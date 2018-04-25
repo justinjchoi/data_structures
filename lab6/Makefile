@@ -1,0 +1,19 @@
+# Justin Choi (jc8mc) 
+# March 14th 2017 
+# CS 2150-106 Lab 6: Hashing 
+
+CXX=clang++ $(CXXFLAGS)
+CXXFLAGS=-Wall -O2 
+OFILES = hashTable.o wordPuzzle.o timer.o
+
+.SUFFIXES: .o .cpp
+
+a.out: $(OFILES)
+	$(CXX) $(DEBUG) $(OFILES)
+
+clean: 
+	-rm *.o *a.out 
+
+wordPuzzle.o: wordPuzzle.cpp 
+hashTable.o: hashTable.cpp hashTable.h
+timer.o: timer.cpp timer.h

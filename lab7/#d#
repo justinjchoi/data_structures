@@ -1,0 +1,39 @@
+Last login: Thu Mar 23 05:20:39 on ttys000
+Justins-Macbook-Air:~ apple$ ls
+AndroidStudioProjects Movies		lab3
+Applications	      			Music			lab4
+Desktop									Pictures		lab5
+Documents											Public			lab6
+Downloads														PycharmProjects  lab7
+Dropbox																	  anaconda  math3350
+Google Drive																  	    lab1   stat3130
+Library																		    	    lab2   tutorial
+Justins-Macbook-Air:~ apple$ cd lab7 
+Justins-Macbook-Air:lab7 apple$ ls
+#array2.ibcm#		 	addition.ibcm~		bubblesort.cpp
+a.out								array.cpp		bubblesort.ibcm
+addition.cpp										array.cpp~		bubblesort.ibcm~
+addition.cpp~													array.ibcm
+addition.ibcm														array.ibcm~
+Justins-Macbook-Air:lab7 apple$ emacs
+
+
+
+
+
+
+4037 035              store   swapit2 plant instruction
+300B 036              load    curr    loads curr value
+0000 037      swapit2 dw      0
+3009 038      endl    load    j       decrement j
+600E 039              sub     one     j--
+4009 03A              store   j       stores j value
+C019 03B              jmp     loop    go back to the beginning of the loop
+3008 03C      exitj   load    i       increment i
+500E 03D              add     one     i++
+4008 03E              store   i       stores i value
+3001 03F              load    max     loads max
+600E 040              sub     one     max - 1 = j, reset value
+4009 041              store   j       stores j value
+C015 042              jmp     start   go back to start
+0000 043      xit     halt            stops the program

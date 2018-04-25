@@ -1,0 +1,46 @@
+/*
+Justin Choi (jc8mc) 
+CS 2150 - 106 
+April 13th 2017 
+*/ 
+
+#include <stdio.h> 
+#include <stdlib.h>
+
+struct List {
+  struct myNode *head;
+}; 
+
+struct myNode {
+  int myValue; 
+  struct myNode *prev, *next; 
+};  
+
+int main() {
+  int var_num;
+  int value; 
+  struct List *myList; 
+  struct myNode *front, *start; 
+  printf("Enter how many values to input: "); 
+  scanf("%d", &var_num); 
+  myList = (struct List*) malloc (sizeof(struct List)); 
+  myList -> head = (struct myNode*) malloc (sizeof(struct myNode)); 
+  myList -> head -> myValue = 0;
+  front = myList -> head;  
+  int i; 
+  for (i = 0; i < var_num; i++) {
+    int i_prime = i + 1;   
+    printf("Enter value %d:", i_prime); 
+    scanf("%d", &value); 
+    front -> next = (struct myNode*) malloc(sizeof(struct myNode)); 
+    front -> myValue = value; 
+    front = front -> next; 
+  }
+  start = myList -> head; 
+  for (int a = 0; a < var_num; a++) {
+    printf("%d\n", start -> myValue); 
+    start = start -> next; 
+  }
+  free(myList); 
+  return 0; 
+}

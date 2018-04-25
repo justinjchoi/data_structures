@@ -1,0 +1,8 @@
+// Justin Choi (jc8mc) 06/02/2017 unix.questions.txt 
+
+1. I personally found section 4.3 very confusing. So, I was wondering what the manual page for a particular command meant in terms of how this might help me in coding and learning CS in general. 
+
+2. whatis command says it gives a brief description of a command. Rather it was very long. Is that normal? 
+
+3. When you are trying to copy a file, you use the cp command and write the original file name and write the name of the new file that you wish to create by copying. (For example, you do cp science.txt science.bak) When you type science.bak, does this change th extension of th I the .bak fe .bak file would no longer be a text file. 
+

@@ -1,0 +1,68 @@
+C015 000              jmp     start
+0005 001      max     dw      5       int max = 5
+0003 002      arr[]   dw      mem     int arr[]
+0003 003      a0      dw      3       a0 = arr[0] = 3 
+0001 004      a1      dw      1       a1 = arr[1] = 1    
+FFFE 005      a2      dw      -2      a2 = arr[2] = -2     
+0013 006      a3      dw      19      a3 = arr[3] = 19      
+0002 007      a4      dw      2       a4 = arr[4] = 2    
+0000 008      i       dw      0       int i = 0
+0004 009      j       dw      4       int j = 4
+3000 00A      ldit    dw      3000    load function helper
+0000 00B      curr    dw      0       int curr = 0 
+0000 00C      prev    dw      0       int prev = 0
+0000 00D      temp    dw      0       int temp = 0 
+0001 00E      one     dw      1       CONSTANT one (1) 
+4000 00F      strit   dw      4000    store function helper
+0000 010
+0000 011
+0000 012
+0000 013
+0000 014
+3001 015      start   load    max     loads max into accumulator; while (i < max)  
+6008 016              sub     i       max - i 
+E043 017              jmpl    xit     halt if max - i < 0 
+D043 018              jmpe    xit     halt if max - i < 0 
+3009 019      loop    load    j       load j into accumulator while ( j > i ) 
+6008 01A              sub     i       j - i, continue if j-i >= 0 
+E03C 01B              jmpl    exitj   increment i and return to start
+D03C 01C              jmpe    exitj   
+300A 01D              load    ldit    form instruction to load arr[j]
+5002 01E              add     arr[]      
+5009 01F              add     j
+4023 020              store   doit    store instruction
+600E 021              sub     one     arr[j-1]
+4025 022              store   doit2   store helper arr[j-1]  
+0000 023      doit    dw      0       curr = arr[j]
+400B 024              store   curr    store curr
+0000 025      doit2   dw      0       prev = arr[j-1]
+400C 026              store   prev    store prev 
+300B 027              load    curr    load curr
+600C 028              sub     prev    subtract prev from current 
+E02B 029              jmpl    swap    jmp to swap if less than 0 
+C038 02A              jmp     endl    jmp to endl
+300F 02B      swap    load    strit   arr[j] = prev
+5002 02C              add     arr
+5009 02D              add     j       arr[j]
+4030 02E              store   swapit
+300C 02F              load    prev    loads prev value
+0000 030      swapit  dw      0 
+300F 031              load    strit   arr[j-1] = curr
+5002 032              add     arr
+5009 033              add     j       arr[j]
+600E 034              sub     one     j--
+4037 035              store   swapit2 plant instruction
+300B 036              load    curr    loads curr value
+0000 037      swapit2 dw      0 
+3009 038      endl    load    j       decrement j 
+600E 039              sub     one     j--
+4009 03A              store   j       stores j value
+C019 03B              jmp     loop    go back to the beginning of the loop
+3008 03C      exitj   load    i       increment i 
+500E 03D              add     one     i++
+4008 03E              store   i       stores i value
+3001 03F              load    max     loads max 
+600E 040              sub     one     max - 1 = j, reset value
+4009 041              store   j       stores j value
+C015 042              jmp     start   go back to start 
+0000 043      xit     halt            stops the program 

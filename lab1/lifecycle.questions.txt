@@ -1,0 +1,11 @@
+// Justin Choi (jc8mc) 
+// January 24th 2017 
+// lifecycle.questions.txt
+
+Question: Look at the output of lifecycle.cpp. Write at least one question about something in this program. Write your question in a text file. 
+
+Answer: 
+
+1. I was wondering what the reserved word "friend" in LifeCycle.h and "operator" meant in the C++ programming langauge
+
+2. I was also wondering what rhs was in LifeCycle.cpp. What does rhs do in the constructor?  

@@ -1,0 +1,153 @@
+// Justin Choi (jc8mc) 
+// January 28th 2017 
+// List.cpp 
+
+#include <iostream>
+#include "ListNode.h"
+#include "ListItr.h"
+#include <string>
+using namespace std; 
+
+// Constructor
+List :: List() {
+  head = new ListNode();
+  tail = new ListNode();
+  head -> previous = NULL; 
+  tail -> next = NULL; 
+  head -> next = tail; 
+  tail -> previous = head; 
+  count = 0; 
+}
+
+// Copy Constructor 
+List::List(const List& source) {
+  head=new ListNode;
+  tail=new ListNode;
+  head->next=tail;
+  tail->previous=head;
+  count=0;
+  ListItr iter(source.head->next);
+  while (!iter.isPastEnd()) {       // deep copy of the list
+    insertAtTail(iter.retrieve());
+    iter.moveForward();
+  }
+}
+
+// Destructor
+List :: ~List() {
+  delete head; 
+  delete tail; 
+}
+
+bool List :: isEmpty() const {
+  if (count == 0) 
+    return true; 
+  else 
+    return false; 
+}
+
+// NOT YET IMPLEMENTED
+void List :: makeEmpty() 
+{
+  count = 0; 
+}
+
+ListItr List :: first() 
+{
+  ListItr iterator; 
+  iterator.current = head -> next; 
+  return iterator; 
+}
+
+ListItr List :: last() 
+{
+  ListItr iterator; 
+  iterator.current = tail -> previous; 
+  return iterator; 
+}
+
+void List :: insertAfter(int x, ListItr position) 
+{
+  ListNode *current_node  = position.current; 
+  ListNode *new_node = new ListNode; 
+  ListNode *next_node = current_node -> next; 
+  new_node -> previous = current_node; 
+  new_node -> next = next_node; 
+  new_node -> value = x; 
+  current_node -> next = new_node; 
+  next_node -> previous = new_node; 
+  count++; 
+}
+
+void List :: insertBefore(int x, ListItr position)
+{
+  ListNode *current_node = position.current; 
+  ListNode *new_node = new ListNode(); 
+  ListNode *previous_node = current_node -> previous; 
+  new_node -> next = current_node; 
+  new_node -> previous = previous_node; 
+  new_node -> value = x; 
+  current_node -> previous = new_node; 
+  previous_node -> next = new_node; 
+  count++; 
+}
+
+void List :: insertAtTail(int x) 
+{
+  ListNode *new_node = new ListNode(); 
+  ListNode *previous_node = tail -> previous; 
+  new_node -> next = tail; 
+  new_node -> value = x; 
+  previous_node -> next = new_node; 
+  tail -> previous = new_node; 
+  count++; 
+}
+
+void List :: remove(int x) 
+{
+  ListItr iterator = find(x); 
+  ListNode *current_position = iterator.current; 
+  ListNode *previous_node = current_position -> previous; 
+  ListNode *next_node = current_position -> next; 
+  previous_node -> next = next_node; 
+  next_node -> previous = previous_node; 
+  count--; 
+}
+
+// Check with TA
+ListItr List :: find (int x) 
+{
+  ListItr iterator = first(); 
+  while (!iterator.isPastEnd()) {
+    if (iterator.current -> value == x)
+      return iterator; 
+    else 
+      iterator.moveForward();  
+  }
+  return iterator; // how to return to dummy tail node 
+}
+
+int List :: size() const {
+  return count; 
+}
+
+// Not Yet Implemented
+void printList(List& theList, bool forward)
+{
+  return;
+}
+
+// Equals Operator
+List& List::operator=(const List& source) { 
+  if (this == &source)
+    return *this;
+  else {
+    makeEmpty();
+    ListItr iter(source.head->next);
+    while (!iter.isPastEnd()) {
+      insertAtTail(iter.retrieve());
+      iter.moveForward();
+    }
+  }
+  return *this;
+}

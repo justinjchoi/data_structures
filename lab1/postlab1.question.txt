@@ -1,0 +1,10 @@
+// Justin Choi (jc8mc) 
+// January 26th 2017 
+// CS 2150 postlab1.question.txt 
+
+Write at least one question about something in this program.
+
+1. On the post lab page, it says we normally only include in .h files just the declarations (prototypes) of classes, constants, function, etc but not definitions of C++ methods. So, I was wondering what the difference is of a template class and classes we wrote and studied the past week. 
+
+2. In the T* pop_head method, there is a line temp = temp -> next; I was wondering what the -> meant in terms of its operations. 
+

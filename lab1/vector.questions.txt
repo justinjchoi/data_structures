@@ -1,0 +1,11 @@
+// Justin Choi (jc8mc)
+// January 24th 2017 
+// vector.questions.txt
+
+Question: Write at least one question about something in this program. The question might be about something you don't understand completely. Write your questions in a file 
+
+Answer:
+
+1. Vectors in C++, Array / ArrayList in Java, and Lists in Python seem all very similar. Why is there a naming difference in each programming language?
+
+2. If I enter Alex, 0 is returned. Is there a way to index Alex's 'A' in such a way?

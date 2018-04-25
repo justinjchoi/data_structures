@@ -1,0 +1,86 @@
+// Justin Choi (jc8mc) 
+// CS 2150 - 106 
+// April 18th 2017 
+
+#include "huffmanNode.h"
+#include <string>
+#include <iostream>
+#include <fstream> 
+#include <stdlib.h>
+using namespace std; 
+
+// forward declaration
+void huffTree(huffmanNode *node, string str, char c); 
+
+int main (int argc, char **argv) {
+  if ( argc != 2 ) {
+    cout << "Must supply the input file name as the only parameter" << endl;
+    exit(1);
+  }
+  
+  ifstream file(argv[1], ifstream::binary);
+  
+  if (!file.is_open()) {
+    cout << "Unable to open file '" << argv[1] << "'." << endl;
+    exit(2);
+  }
+
+  char buffer[256]; 
+  huffmanNode *n = new huffmanNode(0, NULL); 
+   
+  while (true) {
+    string character, code;
+    file >> character; 
+    if ((character[0] == '\n') || (character[0] == '\r'))
+      continue;  
+    if ((character[0] == '-') && (character.length() > 1)) {
+      file.getline(buffer, 255, '\n'); 
+      break; 
+    }
+    if (character == "space") {
+      character = " "; 
+    }
+    code = string(buffer);  
+    file >> code; 
+    huffTree(n, code, character[0]); 
+  }
+
+  char bit;   
+  huffmanNode *myNode = n; 
+  while ((bit = file.get()) != '-') {
+    if ((bit != '0') && (bit != '1')) 
+      continue; 
+    if (bit == '1' && myNode -> right != NULL) {
+      myNode = myNode -> right; 
+    }
+    else if(bit == '0' && myNode -> left != NULL) {
+      myNode = myNode -> left; 
+    }
+    if (myNode -> left == NULL && myNode -> right == NULL) {
+      cout << myNode -> getLetter(); 
+      myNode = n; 
+    }
+  }
+
+  cout << endl; 
+  file.close();
+  return 0; 
+}
+
+void huffTree(huffmanNode *node, string str, char c) {
+  if (str.length() == 0) {
+    node -> letter = c; 
+  }
+  if (str[0] == '0') {
+    if(node -> left == NULL) {
+      node -> left = new huffmanNode(0, NULL); 
+    }
+    huffTree(node -> left, str.substr(1, str.length() - 1), c); 
+  }
+  else if (str[0] == '1') {
+    if (node -> right == NULL) {
+      node -> right = new huffmanNode(0, NULL); 
+    }
+    huffTree(node -> right, str.substr(1, str.length() - 1), c); 
+  }
+}

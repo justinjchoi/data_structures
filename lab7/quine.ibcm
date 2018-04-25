@@ -1,0 +1,19 @@
+C005 000         jmp	start	unconditional jump; skip to 004, which is start 
+3000 001  func   dw     3000 	load function 
+0000 002  i      dw     0      	0 
+0013 003  len    dw     12 	int length 
+0001 004  one    dw     1 	CONSTANT one (1) 
+3003 005  start  load    	int length
+6002 006         sub    i 	-i
+6004 007         sub    one 	-one
+E012 008         jmpl   xit 	end; while (len - i > 0), if condition not met end   
+3001 009         load   func 	load function
+5002 00A         add    i 	add i 
+400C 00B         store  func    store &  plant instruction
+0000 00C  doit   dw     0 	load instruction 
+1800 00D         printH         print 
+3002 00E         load		i; increment: i++
+5004 00F         add     	""
+4002 010         store   	""
+C005 011         jmp     	start
+0000 012  xit    halt    	end the program

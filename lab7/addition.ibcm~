@@ -1,0 +1,30 @@
+C00A 000	jmp	start	skip around the variables
+0000 001 i1 	dw 	0 	int i1
+0000 002 i2 	dw 	0 	int i2
+0000 003 i3 	dw 	0 	int i3
+0000 004 sum    dw      0       sum 
+0000 005 zero   dw      0       zero 
+0000 006 one    dw      1       one 
+0000 007                        leave space for changes 
+0000 008 
+0000 009 
+1000 00A start  readH           read input for i1 
+4001 00B        store   i1      store i1 from the input 
+1000 00C        readH           read input for i2 
+4002 00D        store   i2      store i2 from the input 
+1000 00E        readH           read input for i3 
+4003 00F        store   i3      store i3 from the input 
+3004 010        load    sum     load sum
+5001 011        add     i1      add i1 to accumulator 
+5002 012        add     i2      add i2 to accumulator 
+5003 013        add     i3      add i3 to accumulator
+1800 014        printH          prints the sum         
+D017 015        jumpe   xit     accumualtor is zero, exit the loop
+C00A 016        jmp     start   while (sum != 0) loop again 
+3001 017 xit    load    i1      load to print i1 
+1800 018        printH          print i1 
+3002 019        load    i2      load to print i2 
+1800 01A        printH          print i2 
+3003 01B        load    i3      load to print i3 
+1800 01C        printH          print i3 
+0000 01D        halt            stops the program 
